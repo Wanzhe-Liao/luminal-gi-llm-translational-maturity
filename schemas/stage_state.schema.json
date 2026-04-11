@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/stage-state.schema.json",
+  "title": "Stage State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stage_name",
+    "run_id",
+    "status",
+    "updated_at",
+    "input_dependencies",
+    "pass_criteria",
+    "failure_reasons",
+    "human_gate_status",
+    "artifact_paths"
+  ],
+  "properties": {
+    "stage_name": { "type": "string" },
+    "run_id": { "type": "string" },
+    "protocol": { "type": ["string", "null"], "enum": ["A", "B", null] },
+    "status": { "type": "string", "enum": ["pending", "running", "passed", "failed", "blocked"] },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "input_dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "pass_criteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "failure_reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "human_gate_status": { "type": "string" },
+    "artifact_paths": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

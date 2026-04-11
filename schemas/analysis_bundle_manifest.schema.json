@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/analysis-bundle-manifest.schema.json",
+  "title": "Analysis Bundle Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "protocol",
+    "data_version",
+    "denominator_definition",
+    "table_figure_index",
+    "sensitivity_analysis_status",
+    "ab_comparison_status",
+    "generated_at"
+  ],
+  "properties": {
+    "run_id": { "type": "string" },
+    "protocol": { "type": "string", "enum": ["A", "B", "AB"] },
+    "data_version": { "type": "string" },
+    "denominator_definition": { "type": "string" },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string" },
+          "row_count": { "type": ["integer", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "table_figure_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tables", "figures", "memos"],
+      "properties": {
+        "tables": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "figures": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "memos": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "sensitivity_analysis_status": { "type": "string" },
+    "ab_comparison_status": { "type": "string" },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}

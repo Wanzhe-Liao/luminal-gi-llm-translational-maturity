@@ -1,0 +1,16 @@
+# Core pipeline (all scripts)
+# No external dependencies for basic pipeline
+
+# Scientific computing (analysis helpers and figure generation)
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+arviz>=0.15
+
+# Optional advanced modeling helpers
+pymc>=5.0
+
+# LLM API calls (llm_screening.py, llm_tier_labeling.py)
+# Optional: install one or both
+# openai>=1.0
+# anthropic>=0.20
